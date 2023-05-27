@@ -33,11 +33,12 @@ class _LoginPageState extends State<LoginPage> {
     final container = Center(
       child: Container(
         width: double.infinity,
-          decoration: const BoxDecoration(
-    image: DecorationImage(
-        image: AssetImage("img/bg1.png"),
-        fit: BoxFit.cover),
-  ),
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("img/bg1.png"),
+            fit: BoxFit.cover,
+          ),
+        ),
         padding: EdgeInsets.all(16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -56,10 +57,9 @@ class _LoginPageState extends State<LoginPage> {
               child: TextField(
                 textAlign: TextAlign.left,
                 decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.person), 
+                  prefixIcon: Icon(Icons.person),
                   labelText: 'نام کاربری',
-                  border:OutlineInputBorder(),
-                  
+                  border: OutlineInputBorder(),
                 ),
               ),
             ),
@@ -69,9 +69,9 @@ class _LoginPageState extends State<LoginPage> {
               child: TextField(
                 textAlign: TextAlign.left,
                 decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.vpn_key), 
+                  prefixIcon: Icon(Icons.vpn_key),
                   labelText: 'رمز عبور',
-                  border:OutlineInputBorder(),
+                  border: OutlineInputBorder(),
                   suffixIcon: IconButton(
                     icon: Icon(
                       _isPasswordVisible ? Icons.visibility_off : Icons.visibility,
@@ -111,7 +111,19 @@ class _LoginPageState extends State<LoginPage> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => SignUpPage()),
+                  PageRouteBuilder(
+                    transitionDuration: Duration(milliseconds: 400),
+                    pageBuilder: (_, __, ___) => SignUpPage(),
+                    transitionsBuilder: (_, animation, __, child) {
+                      return SlideTransition(
+                        position: Tween<Offset>(
+                          begin: Offset(0.0, 2.0),
+                          end: Offset.zero,
+                        ).animate(animation),
+                        child: child,
+                      );
+                    },
+                  ),
                 );
               },
               child: Text(
@@ -146,12 +158,13 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     final container = Center(
       child: Container(
-      width: double.infinity,
-    decoration: const BoxDecoration(
-    image: DecorationImage(
-        image: AssetImage("img/bg2.png"),
-        fit: BoxFit.cover),
-  ),
+        width: double.infinity,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("img/bg2.png"),
+            fit: BoxFit.cover,
+          ),
+        ),
         padding: EdgeInsets.all(16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -170,35 +183,33 @@ class _SignUpPageState extends State<SignUpPage> {
               child: TextField(
                 textAlign: TextAlign.left,
                 decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.person), 
+                  prefixIcon: Icon(Icons.person),
                   labelText: 'نام کاربری',
-                  border:OutlineInputBorder(),
+                  border: OutlineInputBorder(),
                 ),
               ),
             ),
-
             SizedBox(height: 20),
             SizedBox(
               width: 300,
               child: TextField(
                 textAlign: TextAlign.left,
                 decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.email), 
+                  prefixIcon: Icon(Icons.email),
                   labelText: 'ایمیل',
-                  border:OutlineInputBorder(),
+                  border: OutlineInputBorder(),
                 ),
               ),
             ),
-
             SizedBox(height: 20),
             SizedBox(
               width: 300,
               child: TextField(
                 textAlign: TextAlign.left,
                 decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.vpn_key), 
+                  prefixIcon: Icon(Icons.vpn_key),
                   labelText: 'رمز عبور',
-                  border:OutlineInputBorder(),
+                  border: OutlineInputBorder(),
                   suffixIcon: IconButton(
                     icon: Icon(
                       _isPasswordVisible ? Icons.visibility_off : Icons.visibility,
@@ -238,7 +249,19 @@ class _SignUpPageState extends State<SignUpPage> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginPage()),
+                  PageRouteBuilder(
+                    transitionDuration: Duration(milliseconds: 400),
+                    pageBuilder: (_, __, ___) => LoginPage(),
+                    transitionsBuilder: (_, animation, __, child) {
+                      return SlideTransition(
+                        position: Tween<Offset>(
+                          begin: Offset(0.0, 2.0),
+                          end: Offset.zero,
+                        ).animate(animation),
+                        child: child,
+                      );
+                    },
+                  ),
                 );
               },
               child: Text(
