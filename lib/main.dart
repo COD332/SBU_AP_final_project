@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'app.dart';
 
 void main() => runApp(MyApp());
 
@@ -48,7 +49,6 @@ class _LoginPageState extends State<LoginPage> {
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 25,
-                fontFamily: 'Roboto',
               ),
             ),
             SizedBox(height: 20),
@@ -90,13 +90,30 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(
               width: 200,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () 
+                {
+                Navigator.push(
+                  context,
+                  PageRouteBuilder(
+                    transitionDuration: Duration(milliseconds: 400),
+                    pageBuilder: (_, __, ___) => app(),
+                    transitionsBuilder: (_, animation, __, child) {
+                      return SlideTransition(
+                        position: Tween<Offset>(
+                          begin: Offset(0.0, 2.0),
+                          end: Offset.zero,
+                        ).animate(animation),
+                        child: child,
+                      );
+                    },
+                  ),
+                );
+                },
                 child: Text(
                   'ورود',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
-                    fontFamily: 'Roboto',
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
@@ -131,7 +148,6 @@ class _LoginPageState extends State<LoginPage> {
                 style: TextStyle(
                   color: Colors.lightBlue[400],
                   fontSize: 18,
-                  fontFamily: 'Roboto',
                 ),
               ),
             ),
@@ -174,7 +190,6 @@ class _SignUpPageState extends State<SignUpPage> {
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 25,
-                fontFamily: 'Roboto',
               ),
             ),
             SizedBox(height: 20),
@@ -234,7 +249,6 @@ class _SignUpPageState extends State<SignUpPage> {
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
-                    fontFamily: 'Roboto',
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
@@ -269,7 +283,6 @@ class _SignUpPageState extends State<SignUpPage> {
                 style: TextStyle(
                   color: Colors.lightBlue[400],
                   fontSize: 18,
-                  fontFamily: 'Roboto',
                 ),
               ),
             ),
