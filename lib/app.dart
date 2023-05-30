@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'search.dart';
 
 class app extends StatelessWidget {
   @override
@@ -28,7 +29,22 @@ class app extends StatelessWidget {
                 height: 60.0,
                 child: ElevatedButton.icon(
                   onPressed: () {
-
+                Navigator.push(
+                  context,
+                  PageRouteBuilder(
+                    transitionDuration: Duration(milliseconds: 400),
+                    pageBuilder: (_, __, ___) => search(),
+                    transitionsBuilder: (_, animation, __, child) {
+                      return SlideTransition(
+                        position: Tween<Offset>(
+                          begin: Offset(0.0, 2.0),
+                          end: Offset.zero,
+                        ).animate(animation),
+                        child: child,
+                      );
+                    },
+                  ),
+                );
                   },
                   style: ElevatedButton.styleFrom(
                     textStyle: TextStyle(fontSize: 30.0),
