@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'passengers.dart';
 
 class SearchRes extends StatefulWidget {
   @override
@@ -296,7 +297,25 @@ Container(
                     Expanded(
                       flex: 3,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () 
+                        {
+                   Navigator.push(
+                  context,
+                  PageRouteBuilder(
+                    transitionDuration: Duration(milliseconds: 400),
+                    pageBuilder: (_, __, ___) => Passengers(),
+                    transitionsBuilder: (_, animation, __, child) {
+                      return SlideTransition(
+                        position: Tween<Offset>(
+                          begin: Offset(0.0, 2.0),
+                          end: Offset.zero,
+                        ).animate(animation),
+                        child: child,
+                      );
+                    },
+                  ),
+                );
+                        },
                         style: ElevatedButton.styleFrom(
                           primary: Colors.blue,
                           shape: RoundedRectangleBorder(
