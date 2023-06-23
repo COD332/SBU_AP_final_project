@@ -38,6 +38,7 @@ migrate_working_dir/
 /test/
 /web/
 /windows/
+/UI/
 .metadata
 analysis_options.yaml
 pubspec.lock
