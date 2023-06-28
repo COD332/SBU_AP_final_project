@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'search.dart';
 import 'travels.dart';
 import 'purchase.dart';
+import 'profile.dart';
 
 class app extends StatelessWidget {
   @override
@@ -32,7 +33,7 @@ class app extends StatelessWidget {
                             context,
                             PageRouteBuilder(
                               transitionDuration: Duration(milliseconds: 400),
-                              pageBuilder: (_, __, ___) => search(),
+                              pageBuilder: (_, __, ___) => profile(),
                               transitionsBuilder:
                                   (_, animation, __, child) {
                                 return SlideTransition(
