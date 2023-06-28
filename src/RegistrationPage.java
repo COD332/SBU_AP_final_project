@@ -3,12 +3,14 @@ import java.util.regex.Pattern;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.HashSet;
 
 public class RegistrationPage {
+    private static HashSet<String> usernames = new HashSet<>();
+
     public static void main(String[] args) {
+        loadUsernamesFromFile();
+
         Scanner scanner = new Scanner(System.in);
 
         String username = getUsername(scanner);
@@ -25,6 +27,26 @@ public class RegistrationPage {
         scanner.close();
     }
 
+    private static void loadUsernamesFromFile() {
+        try {
+            String projectDir = System.getProperty("user.dir");
+            File file = new File(projectDir + "/../data/info.txt");
+
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] userInfo = line.split(",");
+                String username = userInfo[2];
+                usernames.add(username);
+            }
+            scanner.close();
+
+        } catch (IOException e) {
+            System.out.println("An error occurred while loading usernames from file.");
+            e.printStackTrace();
+        }
+    }
+
     private static String getUsername(Scanner scanner) {
         System.out.print("Enter username: ");
         String username = scanner.nextLine();
@@ -33,6 +55,11 @@ public class RegistrationPage {
         if (!Pattern.matches(usernameRegex, username)) {
             System.out.println(
                     "Invalid username! It must start with a letter and only contain alphanumeric characters and underscores (_).");
+            return getUsername(scanner);
+        }
+
+        if (usernames.contains(username)) {
+            System.out.println("Username already exists! Please choose a different username.");
             return getUsername(scanner);
         }
 
@@ -74,15 +101,13 @@ public class RegistrationPage {
                 dataDir.mkdir();
             }
 
-            FileWriter writer = new FileWriter(projectDir + "/../data/info.txt", true);
-            writer.write("{");
-
+            FileWriter writer = new FileWriter(projectDir + "/data/info.txt", true);
             for (String info : userInfo) {
                 writer.write(info + ",");
             }
-            writer.write("}\n");
+            writer.write("\n");
             writer.close();
-            System.out.println("Registration successful. User information has been saved to ../data/info.txt.");
+            System.out.println("Registration successful. User information has been saved to data/info.txt.");
         } catch (IOException e) {
             System.out.println("An error occurred while saving the user information.");
             e.printStackTrace();
