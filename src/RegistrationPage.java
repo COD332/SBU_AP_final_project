@@ -1,7 +1,11 @@
 import java.util.Scanner;
 import java.util.regex.Pattern;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class RegistrationPage {
     public static void main(String[] args) {
@@ -64,14 +68,21 @@ public class RegistrationPage {
 
     private static void saveUserInfoToFile(String[] userInfo) {
         try {
-            FileWriter writer = new FileWriter("info.txt", true);
+            String projectDir = System.getProperty("user.dir");
+            File dataDir = new File(projectDir + "/../data");
+            if (!dataDir.exists()) {
+                dataDir.mkdir();
+            }
+
+            FileWriter writer = new FileWriter(projectDir + "/../data/info.txt", true);
             writer.write("{");
+
             for (String info : userInfo) {
                 writer.write(info + ",");
             }
             writer.write("}\n");
             writer.close();
-            System.out.println("Registration successful. User information has been saved to info.txt.");
+            System.out.println("Registration successful. User information has been saved to ../data/info.txt.");
         } catch (IOException e) {
             System.out.println("An error occurred while saving the user information.");
             e.printStackTrace();
