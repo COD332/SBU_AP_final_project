@@ -64,7 +64,7 @@ public class RegistrationPage {
 
     private static void saveUserInfoToFile(String[] userInfo) {
         try {
-            FileWriter writer = new FileWriter("info.txt");
+            FileWriter writer = new FileWriter("info.txt", true);
             writer.write("{");
             for (String info : userInfo) {
                 writer.write(info + ",");
