@@ -1,11 +1,46 @@
 import 'package:flutter/material.dart';
+import 'done.dart';
+import 'conv.dart';
 
 class Confirm extends StatelessWidget {
-  int currentStep = 3;
-  List<String> steps = ['انتخاب پرواز', 'مشخصات مسافران', 'تایید اطلاعات', 'پرداخت'];
+    final String data;
+    const Confirm({Key? key, required this.data}) : super(key: key);
+
+
+TableRow add_row(String x,String y,String z)
+{
+ return  TableRow(
+                        children: [
+                          TableCell(
+                            child: Container(
+                              padding: EdgeInsets.all(8.0),
+                              child: Center(child: Text(toPersianNumber(z))),
+                            ),
+                          ),
+                          TableCell(
+                            child: Container(
+                              padding: EdgeInsets.all(8.0),
+                              child: Center(child: Text(y)),
+                            ),
+                          ),
+                          TableCell(
+                            child: Container(
+                              padding: EdgeInsets.all(8.0),
+                              child: Center(child: Text(x)),
+                            ),
+                          ),
+                        ],
+                      );
+}
+
 
   @override
   Widget build(BuildContext context) {
+
+    int currentStep = 3;
+    List<String> steps = ['انتخاب پرواز', 'مشخصات مسافران', 'تایید اطلاعات', 'پرداخت'];
+
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -47,7 +82,7 @@ class Confirm extends StatelessWidget {
               ),
               SizedBox(height: 20.0),
               Text(
-                'اطلاعات بلیط',
+                'اطلاعات بلیط' ,
                 style: TextStyle(
                   fontSize: 25,
                 ),
@@ -110,7 +145,7 @@ class Confirm extends StatelessWidget {
                           TableCell(
                             child: Container(
                               padding: EdgeInsets.all(8.0),
-                              child: Center(child: Text('۱۰۰,۰۰۰')),
+                              child: Center(child: Text(data.split("###")[0].split("-")[3].split(" ")[0])),
                             ),
                           ),
                           TableCell(
@@ -118,25 +153,25 @@ class Confirm extends StatelessWidget {
                               padding: EdgeInsets.all(8.0),
                               child: Center(
                                   child:
-                                      Text('۱۴۰۱ / ۳ / ۲۵ - ۸ : ۰۰')),
+                                      Text(data.split("###")[0].split("-")[4]+' - '+data.split("###")[0].split("-")[2])),
                             ),
                           ),
                           TableCell(
                             child: Container(
                               padding: EdgeInsets.all(8.0),
-                              child: Center(child: Text('ماهان')),
+                              child: Center(child: Text(data.split("###")[0].split("-")[0]=="img/al1.png"?"آسمان":data.split("###")[0].split("-")[0]=="img/al2.png"?"ساها":"ایران ایر")),
                             ),
                           ),
                           TableCell(
                             child: Container(
                               padding: EdgeInsets.all(8.0),
-                              child: Center(child: Text('تهران')),
+                              child: Center(child: Text(data.split("###")[0].split("-")[1].split(" → ")[1])),
                             ),
                           ),
                           TableCell(
                             child: Container(
                               padding: EdgeInsets.all(8.0),
-                              child: Center(child: Text('قزوین')),
+                              child: Center(child: Text(data.split("###")[0].split("-")[1].split(" → ")[0])),
                             ),
                           ),
                         ],
@@ -155,90 +190,48 @@ class Confirm extends StatelessWidget {
               ),
 
             SizedBox(height: 20),
-                Center(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Table(
-                    border: TableBorder.all(),
-                    columnWidths: const <int, TableColumnWidth>{
-                      0: IntrinsicColumnWidth(),
-                      1: IntrinsicColumnWidth(),
-                      2: IntrinsicColumnWidth(),
-                    },
-                    children: [
-                      TableRow(
-                        children: [
-                          TableCell(
-                            child: Container(
-                              padding: EdgeInsets.all(8.0),
-                              color: Colors.grey[300],
-                              child: Center(child: Text('کد ملی')),
-                            ),
-                          ),
-                          TableCell(
-                            child: Container(
-                              padding: EdgeInsets.all(8.0),
-                              color: Colors.grey[300],
-                              child: Center(child: Text('جنسیت')),
-                            ),
-                          ),
-                          TableCell(
-                            child: Container(
-                              padding: EdgeInsets.all(8.0),
-                              color: Colors.grey[300],
-                              child: Center(child: Text('نام و نام خانوادگی')),
-                            ),
-                          ),
-                        ],
-                      ),
-                      TableRow(
-                        children: [
-                          TableCell(
-                            child: Container(
-                              padding: EdgeInsets.all(8.0),
-                              child: Center(child: Text('۱۲۳۴۵۶۷۸۹')),
-                            ),
-                          ),
-                          TableCell(
-                            child: Container(
-                              padding: EdgeInsets.all(8.0),
-                              child: Center(child: Text('مذکر')),
-                            ),
-                          ),
-                          TableCell(
-                            child: Container(
-                              padding: EdgeInsets.all(8.0),
-                              child: Center(child: Text('پویا همراز')),
-                            ),
-                          ),
-                        ],
-                      ),
-                                            TableRow(
-                        children: [
-                          TableCell(
-                            child: Container(
-                              padding: EdgeInsets.all(8.0),
-                              child: Center(child: Text('۱۲۳۴۵۶۷۸۹')),
-                            ),
-                          ),
-                          TableCell(
-                            child: Container(
-                              padding: EdgeInsets.all(8.0),
-                              child: Center(child: Text('مذکر')),
-                            ),
-                          ),
-                          TableCell(
-                            child: Container(
-                              padding: EdgeInsets.all(8.0),
-                              child: Center(child: Text('علیرضا اسماعیل زاده')),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+Center(
+  child: Padding(
+    padding: EdgeInsets.symmetric(horizontal: 20.0),
+    child: Table(
+      border: TableBorder.all(),
+      columnWidths: const <int, TableColumnWidth>{
+        0: IntrinsicColumnWidth(),
+        1: IntrinsicColumnWidth(),
+        2: IntrinsicColumnWidth(),
+      },
+      children: [
+        TableRow(
+          children: [
+            TableCell(
+              child: Container(
+                padding: EdgeInsets.all(8.0),
+                color: Colors.grey[300],
+                child: Center(child: Text('کد ملی')),
               ),
+            ),
+            TableCell(
+              child: Container(
+                padding: EdgeInsets.all(8.0),
+                color: Colors.grey[300],
+                child: Center(child: Text('جنسیت')),
+              ),
+            ),
+            TableCell(
+              child: Container(
+                padding: EdgeInsets.all(8.0),
+                color: Colors.grey[300],
+                child: Center(child: Text('نام و نام خانوادگی')),
+              ),
+            ),
+          ],
+        ),
+        for (var i = 0; i < data.split("###")[1].split("-").length-1; i++)
+          add_row(data.split("###")[1].split("-")[i], data.split("###")[2].split("-")[i] , data.split("###")[3].split("-")[i]),
+      ],
+    ),
+  ),
+),
 
                 SizedBox(height: 40.0),
 
@@ -267,7 +260,25 @@ class Confirm extends StatelessWidget {
                 width: 200.0,
                 height: 60.0,
                 child: ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                          Navigator.push(
+                            context,
+                            PageRouteBuilder(
+                              transitionDuration: Duration(milliseconds: 400),
+                              pageBuilder: (_, __, ___) => done(),
+                              transitionsBuilder:
+                                  (_, animation, __, child) {
+                                return SlideTransition(
+                                  position: Tween<Offset>(
+                                    begin: Offset(0.0, 2.0),
+                                    end: Offset.zero,
+                                  ).animate(animation),
+                                  child: child,
+                                );
+                              },
+                            ),
+                          );
+                        },
                   style: ElevatedButton.styleFrom(
                     textStyle: TextStyle(fontSize: 20.0),
                     backgroundColor: Colors.green,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'search_res.dart';
+import 'conv.dart';
 
 class search extends StatefulWidget {
   @override
@@ -95,7 +96,7 @@ class _searchState extends State<search> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'تعداد مسافران: $_numPassengers',
+                      'تعداد مسافران: '+toPersianNumber(_numPassengers.toString()),
                       style: TextStyle(fontSize: 20.0),
                     ),
                     SizedBox(width: 10.0),

@@ -4,10 +4,16 @@ import 'confirm.dart';
 class Passengers extends StatefulWidget {
   @override
   _PassengersState createState() => _PassengersState();
+    final String data;
+    const Passengers({Key? key, required this.data}) : super(key: key);
 }
 
 class _PassengersState extends State<Passengers> {
   final List<String> genders = ['مذکر', 'مونث'];
+  List<TextEditingController> nameControllers1 = List.generate(10,(index) => TextEditingController(),);
+  List<String> nameControllers2 = List.generate(10,(index) => "N",);
+  List<TextEditingController> nameControllers3 = List.generate(10,(index) => TextEditingController(),);
+  int input_widget_counter = 1;
   List<Widget> inputFields = [];
   TextEditingController nameController = TextEditingController();
   String? selectedGender;
@@ -21,12 +27,13 @@ class _PassengersState extends State<Passengers> {
   }
 
   Widget buildInputField() {
+    input_widget_counter++;
     return Column(
       children: [
         SizedBox(
           width: 300,
           child: TextField(
-            controller: nameController,
+            controller: nameControllers1[input_widget_counter-1],
             textAlign: TextAlign.left,
             decoration: InputDecoration(
               prefixIcon: Icon(Icons.person),
@@ -58,6 +65,7 @@ class _PassengersState extends State<Passengers> {
                   );
                 }).toList(),
                 onChanged: (String? value) {
+                   nameControllers2[input_widget_counter-1] = value ?? "N";
                   setState(() {
                     selectedGender = value;
                   });
@@ -68,7 +76,7 @@ class _PassengersState extends State<Passengers> {
             SizedBox(
               width: 140,
               child: TextField(
-                controller: nationalIdController,
+                controller: nameControllers3[input_widget_counter-1],
                 textAlign: TextAlign.left,
                 style: TextStyle(fontSize: 13),
                 decoration: InputDecoration(
@@ -144,21 +152,19 @@ class _PassengersState extends State<Passengers> {
               children: [
                 Row(
                   children: [
-                    Expanded(
-                      flex: 3,
-                      child: Container(
-                        width: 80.0,
-                        height: 80.0,
-                        color: Colors.blue,
-                        child: Center(
-                          child: Icon(
-                            Icons.image,
-                            color: Colors.white,
-                            size: 32.0,
-                          ),
-                        ),
-                      ),
+              Expanded(
+                flex: 3,
+                child: Container(
+                  width: 80.0,
+                  height: 80.0,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(widget.data.split("-")[0]),
+                      fit: BoxFit.cover,
                     ),
+                  ),
+                ),
+              ),
                     SizedBox(width: 16.0),
                     Expanded(
                       flex: 7,
@@ -166,7 +172,7 @@ class _PassengersState extends State<Passengers> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'تهران → قزوین',
+                           widget.data.split("-")[1],
                             style: TextStyle(
                               fontSize: 18.0,
                               fontWeight: FontWeight.bold,
@@ -174,7 +180,7 @@ class _PassengersState extends State<Passengers> {
                             textDirection: TextDirection.rtl,
                           ),
                           Text(
-                            '۸ : ۰۰',
+                            widget.data.split("-")[2],
                             style: TextStyle(
                               fontSize: 18.0,
                               fontWeight: FontWeight.bold,
@@ -182,7 +188,7 @@ class _PassengersState extends State<Passengers> {
                    
                           ),
                           Text(
-                            '۱۰۰,۰۰۰ تومان',
+                            widget.data.split("-")[3],
                             style: TextStyle(
                               fontSize: 16.0,
                             ),
@@ -197,6 +203,7 @@ class _PassengersState extends State<Passengers> {
                       child: ElevatedButton(
                         onPressed: () 
                         {
+                          Navigator.pop(context);
                         },
                         style: ElevatedButton.styleFrom(
                           primary: Colors.blue,
@@ -229,7 +236,7 @@ class _PassengersState extends State<Passengers> {
               SizedBox(
                 width: 300,
                 child: TextField(
-                  controller: nameController,
+                  controller: nameControllers1[0],
                   textAlign: TextAlign.left,
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.person),
@@ -261,6 +268,7 @@ class _PassengersState extends State<Passengers> {
                         );
                       }).toList(),
                       onChanged: (String? value) {
+                        nameControllers2[0] = value ?? "N";
                         setState(() {
                           selectedGender = value;
                         });
@@ -271,7 +279,7 @@ class _PassengersState extends State<Passengers> {
                   SizedBox(
                     width: 140,
                     child: TextField(
-                      controller: nationalIdController,
+                      controller: nameControllers3[0],
                       textAlign: TextAlign.left,
                       style: TextStyle(fontSize: 13),
                       decoration: InputDecoration(
@@ -310,11 +318,21 @@ class _PassengersState extends State<Passengers> {
                 height: 60.0,
                 child: ElevatedButton.icon(
                   onPressed: () {
+                    String data1 = "";
+                    String data2 = "";
+                    String data3 = "";
+                    for(var i=0;i<input_widget_counter;i++)
+                    {
+                      data1 += nameControllers1[i].text+"-";
+                      data2 += nameControllers2[i]+"-";
+                      data3 += nameControllers3[i].text+"-";
+                    }
+
                 Navigator.push(
                   context,
                   PageRouteBuilder(
                     transitionDuration: Duration(milliseconds: 400),
-                    pageBuilder: (_, __, ___) => Confirm(),
+                    pageBuilder: (_, __, ___) => Confirm(data:widget.data+"###"+data1+"###"+data2+"###"+data3),
                     transitionsBuilder: (_, animation, __, child) {
                       return SlideTransition(
                         position: Tween<Offset>(
