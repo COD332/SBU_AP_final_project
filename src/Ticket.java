@@ -152,6 +152,21 @@ public class Ticket
         return res; 
     }
 
+    public static String get_tickets_by_id(String data,int id)
+    {
+        String res = "";
+        String[] tickets = data.split("\n");
+        for(int i=0;i<tickets.length;i++)
+        {
+            if(Integer.parseInt(tickets[i].split("-")[6])==id)
+            {
+                res += tickets[i]+"\n";
+            }
+        }
+
+        return res; 
+    } 
+
     // TEST
     public static void main(String[] args) throws IOException
     {
@@ -161,6 +176,7 @@ public class Ticket
         // System.out.println(sort_by_price(get_tickets()));
         // System.out.println(sort_by_time(get_tickets()));
         // System.out.println(get_tickets_by_date(get_tickets(),"1401/3/7"));
+        //System.out.println(get_tickets_by_id(get_tickets(),2372881));
         // System.out.println(filter_time(get_tickets(),3,5));
     }
 }
