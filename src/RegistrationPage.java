@@ -10,15 +10,15 @@ public class RegistrationPage {
 
     public static void main(String[] args) {
 
-        Login("alireza", "alireza@gmail.com", "ali123@#");
-        Login("alireza", "alireza@gmail.com", "ali123@#");
-        Login("alireza", "alireza@gmail.com", "ali123@#");
-        Login("alireza", "alireza@gmail.com", "ali123@#");
-        Login("alireza", "alireza@gmail.com", "ali123@#");
+        Register("alireza", "alireza@gmail.com", "ali123@#");
+        Register("alireza", "alireza@gmail.com", "ali123@#");
+        Register("alireza", "alireza@gmail.com", "ali123@#");
+        Register("alireza", "alireza@gmail.com", "ali123@#");
+        Register("alireza", "alireza@gmail.com", "ali123@#");
 
     }
 
-    private static String Login(String username, String email, String password) {
+    private static String Register(String username, String email, String password) {
 
         loadUsernamesFromFile();
 
