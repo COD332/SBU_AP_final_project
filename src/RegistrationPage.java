@@ -9,22 +9,38 @@ public class RegistrationPage {
     private static HashSet<String> usernames = new HashSet<>();
 
     public static void main(String[] args) {
+
+        Login("alireza", "alireza@gmail.com", "ali123@#");
+        Login("alireza", "alireza@gmail.com", "ali123@#");
+        Login("alireza", "alireza@gmail.com", "ali123@#");
+        Login("alireza", "alireza@gmail.com", "ali123@#");
+        Login("alireza", "alireza@gmail.com", "ali123@#");
+
+    }
+
+    private static String Login(String username, String email, String password) {
+
         loadUsernamesFromFile();
 
-        Scanner scanner = new Scanner(System.in);
+        if (checkUsername(username) == "OK") {
+            if (checkEmail(email) == "OK") {
+                if (checkPassword(password) == "OK") {
 
-        String username = getUsername(scanner);
-        String email = getEmail(scanner);
-        String password = getPassword(scanner);
+                    String[] userInfo = new String[7];
+                    userInfo[2] = username;
+                    userInfo[3] = email;
+                    userInfo[4] = password;
 
-        String[] userInfo = new String[7];
-        userInfo[2] = username;
-        userInfo[3] = email;
-        userInfo[4] = password;
-
-        saveUserInfoToFile(userInfo);
-
-        scanner.close();
+                    return (saveUserInfoToFile(userInfo));
+                } else {
+                    return checkPassword(password);
+                }
+            } else {
+                return checkEmail(email);
+            }
+        } else {
+            return checkUsername(username);
+        }
     }
 
     private static void loadUsernamesFromFile() {
@@ -39,61 +55,46 @@ public class RegistrationPage {
                 String username = userInfo[2];
                 usernames.add(username);
             }
-            scanner.close();
 
         } catch (IOException e) {
-            System.out.println("An error occurred while loading usernames from file.");
+            System.out.println("هنگام بارگیری نام کاربری از فایل خطایی روی داد");
             e.printStackTrace();
         }
+        scanner.close();
     }
 
-    private static String getUsername(Scanner scanner) {
-        System.out.print("Enter username: ");
-        String username = scanner.nextLine();
-
+    private static String checkUsername(String username) {
         String usernameRegex = "^[a-zA-Z][a-zA-Z0-9_]*$";
-        if (!Pattern.matches(usernameRegex, username)) {
-            System.out.println(
-                    "Invalid username! It must start with a letter and only contain alphanumeric characters and underscores (_).");
-            return getUsername(scanner);
+        if (!username.matches(usernameRegex)) {
+            return "فرمت نام کاربری اشتباه است ، باید با حرف انگلیسی شروع شود و می تواند تنها شامل حروف ، اعداد و _ باشد";
         }
 
         if (usernames.contains(username)) {
-            System.out.println("Username already exists! Please choose a different username.");
-            return getUsername(scanner);
+            return "نام کاربری قبلا ثبت شده است";
         }
 
-        return username;
+        return "OK";
     }
 
-    private static String getEmail(Scanner scanner) {
-        System.out.print("Enter email: ");
-        String email = scanner.nextLine();
-
+    private static String checkEmail(String email) {
         String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
-        if (!Pattern.matches(emailRegex, email)) {
-            System.out.println("Invalid email! Please enter a valid email address.");
-            return getEmail(scanner);
+        if (!email.matches(emailRegex)) {
+            return "فرمت ایمیل اشتباه است";
         }
 
-        return email;
+        return "OK";
     }
 
-    private static String getPassword(Scanner scanner) {
-        System.out.print("Enter password: ");
-        String password = scanner.nextLine();
-
-        String passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@#$%])[A-Za-z\\d@#$%]{8,}$";
-        if (!Pattern.matches(passwordRegex, password)) {
-            System.out.println(
-                    "Invalid password! It must be at least 8 characters long and contain at least one letter, one digit, and one special character (@, #, $, %, ...).");
-            return getPassword(scanner);
+    private static String checkPassword(String password) {
+        String passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@#$%])[A-Za-z\\d@#$%^&*()]{8,}$";
+        if (!password.matches(passwordRegex)) {
+            return "فرمت رمز عبور اشتباه است ، باید حداقل دارای 8 حرف و حتما شامل حروف ، اعداد و علامت های خاص باشد";
         }
 
-        return password;
+        return "OK";
     }
 
-    private static void saveUserInfoToFile(String[] userInfo) {
+    private static String saveUserInfoToFile(String[] userInfo) {
         try {
             String projectDir = System.getProperty("user.dir");
             File dataDir = new File(projectDir + "/../data");
@@ -107,10 +108,9 @@ public class RegistrationPage {
             }
             writer.write("\n");
             writer.close();
-            System.out.println("Registration successful. User information has been saved to data/info.txt.");
+            return "ثبت نام با موفقیت انجام شد و اطلاعات دخیره گردید";
         } catch (IOException e) {
-            System.out.println("An error occurred while saving the user information.");
-            e.printStackTrace();
+            return "خطا در هنگام دخیره سازی اطلاعات";
         }
     }
 }
