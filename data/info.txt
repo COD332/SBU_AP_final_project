@@ -1,4 +1,4 @@
-{null,null,reza,reza@gmail.com,reza123@#,null,null,}
-{null,null,mahdi,mahdi@test.com,mahdi123@$,null,null,}
-{null,null,zahra,zahra@outlook.com,zahra123@#,null,null,}
-{null,null,ali,ali@gmail.com,ali123@#,null,null,}
+null,null,reza,reza@gmail.com,reza123@#,null,null,
+null,null,mahdi,mahdi@test.com,mahdi123@$,null,null,
+null,null,zahra,zahra@outlook.com,zahra123@#,null,null,
+null,null,ali,ali@gmail.com,ali123@#,null,null,
