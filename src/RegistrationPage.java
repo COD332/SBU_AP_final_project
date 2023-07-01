@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.regex.Pattern;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -54,23 +53,24 @@ public class RegistrationPage {
                 String[] userInfo = line.split(",");
                 String username = userInfo[2];
                 usernames.add(username);
+                scanner.close();
             }
 
         } catch (IOException e) {
-            System.out.println("هنگام بارگیری نام کاربری از فایل خطایی روی داد");
+            System.out.println("An error occurred while loading username from file");
             e.printStackTrace();
         }
-        scanner.close();
+
     }
 
     private static String checkUsername(String username) {
         String usernameRegex = "^[a-zA-Z][a-zA-Z0-9_]*$";
         if (!username.matches(usernameRegex)) {
-            return "فرمت نام کاربری اشتباه است ، باید با حرف انگلیسی شروع شود و می تواند تنها شامل حروف ، اعداد و _ باشد";
+            return "The username format is wrong, it must start with an English letter and can only contain letters, numbers and _";
         }
 
         if (usernames.contains(username)) {
-            return "نام کاربری قبلا ثبت شده است";
+            return "Username is already registered";
         }
 
         return "OK";
@@ -79,7 +79,7 @@ public class RegistrationPage {
     private static String checkEmail(String email) {
         String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
         if (!email.matches(emailRegex)) {
-            return "فرمت ایمیل اشتباه است";
+            return "Email format is incorrect";
         }
 
         return "OK";
@@ -88,7 +88,7 @@ public class RegistrationPage {
     private static String checkPassword(String password) {
         String passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@#$%])[A-Za-z\\d@#$%^&*()]{8,}$";
         if (!password.matches(passwordRegex)) {
-            return "فرمت رمز عبور اشتباه است ، باید حداقل دارای 8 حرف و حتما شامل حروف ، اعداد و علامت های خاص باشد";
+            return "The password format is wrong, it must have at least 8 characters and must contain letters, numbers and special symbols";
         }
 
         return "OK";
@@ -108,9 +108,9 @@ public class RegistrationPage {
             }
             writer.write("\n");
             writer.close();
-            return "ثبت نام با موفقیت انجام شد و اطلاعات دخیره گردید";
+            return "Registration was successful and information was saved";
         } catch (IOException e) {
-            return "خطا در هنگام دخیره سازی اطلاعات";
+            return "Error while saving data";
         }
     }
 }
