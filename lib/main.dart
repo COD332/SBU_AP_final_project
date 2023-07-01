@@ -5,8 +5,78 @@ import 'app.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+
+  TextEditingController c1 = TextEditingController();
+  TextEditingController c2 = TextEditingController();
+  TextEditingController c3 = TextEditingController();
+  TextEditingController c4 = TextEditingController();
+  TextEditingController c5 = TextEditingController();
+
+  // void send_message(String message) 
+  // {
+  //   Socket.connect('192.168.100.55', 12345).then((socket) {
+  //     socket.writeln(message);
+  //     socket.flush();
+  //     socket.transform(utf8.decoder.cast()).listen((response) 
+  //     {
+  //       if(response == "ok")
+  //       {
+  //               Navigator.push(
+  //                 context,
+  //                 PageRouteBuilder(
+  //                   transitionDuration: Duration(milliseconds: 400),
+  //                   pageBuilder: (_, __, ___) => app(),
+  //                   transitionsBuilder: (_, animation, __, child) {
+  //                     return SlideTransition(
+  //                       position: Tween<Offset>(
+  //                         begin: Offset(0.0, 2.0),
+  //                         end: Offset.zero,
+  //                       ).animate(animation),
+  //                       child: child,
+  //                     );
+  //                   },
+  //                 ),
+  //               );
+  //       }
+
+  //       if(response == "notok")
+  //       {
+  //             showDialog(
+  //           context: context,
+  //           builder: (BuildContext context) {
+  //             return AlertDialog(
+  //               title: Text('خطا'),
+  //               content: Text('مقادیر ورودی را کنترل کنید'),
+  //               actions: <Widget>[
+  //                 ElevatedButton(
+  //                   child: Text('متوجه شدم'),
+  //                   onPressed: () {
+  //                     Navigator.of(context).pop();
+  //                   },
+  //                 ),
+  //               ],
+  //             );
+  //           },
+  //         );
+  //       }
+
+
+      });
+      socket.close();
+
+    }).catchError((e) 
+    {
+      print(e);
+    });
+  }
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
+    send_message("HI");
     return MaterialApp(
       home: Navigator(
         onGenerateRoute: (RouteSettings settings) {
@@ -56,6 +126,7 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(
               width: 300,
               child: TextField(
+                controller:c1,
                 textAlign: TextAlign.left,
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.person),
@@ -68,6 +139,7 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(
               width: 300,
               child: TextField(
+                controller:c2,
                 textAlign: TextAlign.left,
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.vpn_key),
@@ -93,22 +165,22 @@ class _LoginPageState extends State<LoginPage> {
               child: ElevatedButton(
                 onPressed: () 
                 {
-                Navigator.push(
-                  context,
-                  PageRouteBuilder(
-                    transitionDuration: Duration(milliseconds: 400),
-                    pageBuilder: (_, __, ___) => app(),
-                    transitionsBuilder: (_, animation, __, child) {
-                      return SlideTransition(
-                        position: Tween<Offset>(
-                          begin: Offset(0.0, 2.0),
-                          end: Offset.zero,
-                        ).animate(animation),
-                        child: child,
-                      );
-                    },
-                  ),
-                );
+                    Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      transitionDuration: Duration(milliseconds: 400),
+                      pageBuilder: (_, __, ___) => app(),
+                      transitionsBuilder: (_, animation, __, child) {
+                        return SlideTransition(
+                          position: Tween<Offset>(
+                            begin: Offset(0.0, 2.0),
+                            end: Offset.zero,
+                          ).animate(animation),
+                          child: child,
+                        );
+                      },
+                    ),
+                  );
                 },
                 child: Text(
                   'ورود',
@@ -197,6 +269,7 @@ class _SignUpPageState extends State<SignUpPage> {
             SizedBox(
               width: 300,
               child: TextField(
+                controller:c3,
                 textAlign: TextAlign.left,
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.person),
@@ -209,6 +282,7 @@ class _SignUpPageState extends State<SignUpPage> {
             SizedBox(
               width: 300,
               child: TextField(
+                controller:c4,
                 textAlign: TextAlign.left,
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.email),
@@ -221,6 +295,7 @@ class _SignUpPageState extends State<SignUpPage> {
             SizedBox(
               width: 300,
               child: TextField(
+                controller:c5,
                 textAlign: TextAlign.left,
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.vpn_key),
@@ -244,7 +319,24 @@ class _SignUpPageState extends State<SignUpPage> {
             SizedBox(
               width: 200,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                   Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      transitionDuration: Duration(milliseconds: 400),
+                      pageBuilder: (_, __, ___) => app(),
+                      transitionsBuilder: (_, animation, __, child) {
+                        return SlideTransition(
+                          position: Tween<Offset>(
+                            begin: Offset(0.0, 2.0),
+                            end: Offset.zero,
+                          ).animate(animation),
+                          child: child,
+                        );
+                      },
+                    ),
+                  );
+                },
                 child: Text(
                   'ثبت نام',
                   style: TextStyle(
