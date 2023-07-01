@@ -1,10 +1,7 @@
 import java.util.Scanner;
-import java.util.regex.Pattern;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashSet;
-import java.util.Arrays;
 
 public class LoginPage {
     private static HashSet<String> usernames = new HashSet<>();
@@ -16,6 +13,7 @@ public class LoginPage {
         Login("alireza", "alireza123@#");
         Login("alireza", "alireza123@#");
         Login("alireza", "alireza123@#");
+        Login("alireza", "alireza");
 
     }
 
