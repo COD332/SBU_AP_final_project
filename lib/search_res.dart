@@ -4,11 +4,32 @@ import 'passengers.dart';
 class SearchRes extends StatefulWidget {
   @override
   _SearchResState createState() => _SearchResState();
+
 }
 
 class _SearchResState extends State<SearchRes> {
   int _selectedIndex = 0;
   int _selectedIndex2 = 0;
+
+
+  List<String> dates = [
+    '۱۴۰۱ / ۳ / ۷',
+    '۱۴۰۱ / ۳ / ۸',
+    '۱۴۰۱ / ۳ / ۹',
+    '۱۴۰۱ / ۳ / ۱۰',
+    '۱۴۰۱ / ۳ / ۱۱',
+  ];
+
+  String selected_date = "N";
+
+  @override
+  void initState() {
+    super.initState();
+    selected_date = dates[0];
+  }
+
+ 
+
   RangeValues _rangeValues = RangeValues(0, 24);
 
   void _onButtonPressed(int index) {
@@ -18,6 +39,7 @@ class _SearchResState extends State<SearchRes> {
   }
 
     void _onButtonPressed2(int index) {
+          selected_date = dates[index];
     setState(() {
       _selectedIndex2 = index;
     });
@@ -130,7 +152,7 @@ class _SearchResState extends State<SearchRes> {
                     ),
                   ),
                   child: Text(
-                    '۱۴۰۱ / ۳ / ۷',
+                    dates[0],
                     style: TextStyle(
                       color: Colors.white,
                     ),
@@ -147,7 +169,7 @@ class _SearchResState extends State<SearchRes> {
                     ),
                   ),
                   child: Text(
-                    '۱۴۰۱ / ۳ / ۸',
+                    dates[1],
                     style: TextStyle(
                       color: Colors.white,
                     ),
@@ -164,7 +186,7 @@ class _SearchResState extends State<SearchRes> {
                     ),
                   ),
                   child: Text(
-                    '۱۴۰۱ / ۳ / ۹',
+                    dates[2],
                     style: TextStyle(
                       color: Colors.white,
                     ),
@@ -181,7 +203,7 @@ class _SearchResState extends State<SearchRes> {
                     ),
                   ),
                   child: Text(
-                    '۱۴۰۱ / ۳ / ۱۰',
+                    dates[3],
                     style: TextStyle(
                       color: Colors.white,
                     ),
@@ -198,7 +220,7 @@ class _SearchResState extends State<SearchRes> {
                     ),
                   ),
                   child: Text(
-                    '۱۴۰۱ / ۳ / ۱۱',
+                    dates[4],
                     style: TextStyle(
                       color: Colors.white,
                     ),
@@ -246,35 +268,33 @@ Container(
               children: [
                 Row(
                   children: [
-                    Expanded(
-                      flex: 3,
-                      child: Container(
-                        width: 80.0,
-                        height: 80.0,
-                        color: Colors.blue,
-                        child: Center(
-                          child: Icon(
-                            Icons.image,
-                            color: Colors.white,
-                            size: 32.0,
-                          ),
-                        ),
-                      ),
+              Expanded(
+                flex: 3,
+                child: Container(
+                  width: 80.0,
+                  height: 80.0,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('img/al1.png'),
+                      fit: BoxFit.cover,
                     ),
+                  ),
+                ),
+              ),
                     SizedBox(width: 16.0),
                     Expanded(
                       flex: 7,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            'تهران → قزوین',
-                            style: TextStyle(
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            textDirection: TextDirection.rtl,
-                          ),
+                      Text(
+                        'تهران → قزوین',
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textDirection: TextDirection.rtl,
+                      ),
                           Text(
                             '۸ : ۰۰',
                             style: TextStyle(
@@ -303,7 +323,7 @@ Container(
                   context,
                   PageRouteBuilder(
                     transitionDuration: Duration(milliseconds: 400),
-                    pageBuilder: (_, __, ___) => Passengers(),
+                    pageBuilder: (_, __, ___) => Passengers(data: "img/al1.png"+ "-" + 'تهران → قزوین' + "-" + '۸ : ۰۰' + "-" + '۱۰۰,۰۰۰ تومان' + "-" + selected_date),
                     transitionsBuilder: (_, animation, __, child) {
                       return SlideTransition(
                         position: Tween<Offset>(
@@ -335,21 +355,19 @@ Container(
                 SizedBox(height: 20.0),
                 Row(
                   children: [
-                    Expanded(
-                      flex: 3,
-                      child: Container(
-                        width: 80.0,
-                        height: 80.0,
-                        color: Colors.blue,
-                        child: Center(
-                          child: Icon(
-                            Icons.image,
-                            color: Colors.white,
-                            size: 32.0,
-                          ),
-                        ),
-                      ),
+              Expanded(
+                flex: 3,
+                child: Container(
+                  width: 80.0,
+                  height: 80.0,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('img/al2.png'),
+                      fit: BoxFit.cover,
                     ),
+                  ),
+                ),
+              ),
                     SizedBox(width: 16.0),
                     Expanded(
                       flex: 7,
@@ -406,21 +424,19 @@ Container(
                 SizedBox(height: 20.0), 
                 Row(
                   children: [
-                    Expanded(
-                      flex: 3,
-                      child: Container(
-                        width: 80.0,
-                        height: 80.0,
-                        color: Colors.blue,
-                        child: Center(
-                          child: Icon(
-                            Icons.image,
-                            color: Colors.white,
-                            size: 32.0,
-                          ),
-                        ),
-                      ),
+              Expanded(
+                flex: 3,
+                child: Container(
+                  width: 80.0,
+                  height: 80.0,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('img/al3.png'),
+                      fit: BoxFit.cover,
                     ),
+                  ),
+                ),
+              ),
                     SizedBox(width: 16.0),
                     Expanded(
                       flex: 7,
@@ -477,21 +493,19 @@ Container(
                 SizedBox(height: 20.0),
                 Row(
                   children: [
-                    Expanded(
-                      flex: 3,
-                      child: Container(
-                        width: 80.0,
-                        height: 80.0,
-                        color: Colors.blue,
-                        child: Center(
-                          child: Icon(
-                            Icons.image,
-                            color: Colors.white,
-                            size: 32.0,
-                          ),
-                        ),
-                      ),
+              Expanded(
+                flex: 3,
+                child: Container(
+                  width: 80.0,
+                  height: 80.0,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('img/al3.png'),
+                      fit: BoxFit.cover,
                     ),
+                  ),
+                ),
+              ),
                     SizedBox(width: 16.0),
                     Expanded(
                       flex: 7,
