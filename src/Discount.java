@@ -1,15 +1,12 @@
 import java.io.*;
 import java.util.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 
 public class Discount {
     public static float use_discount(int orig_price, String code) throws IOException {
         String projectDir = System.getProperty("user.dir");
         File file = new File(projectDir + "/../data/Discount.txt");
         Scanner myReader = new Scanner(file);
-        
+
         String[] data;
 
         while (myReader.hasNextLine()) {
@@ -17,6 +14,8 @@ public class Discount {
             if (data[0].equals(code))
                 return orig_price * ((float) (100 - Integer.parseInt(data[1])) / 100);
         }
+
+        myReader.close();
 
         return orig_price;
     }
