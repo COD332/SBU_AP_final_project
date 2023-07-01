@@ -10,20 +10,24 @@ public class LoginPage {
     private static HashSet<String> usernames = new HashSet<>();
 
     public static void main(String[] args) {
+
+        Login("alireza", "alireza123@#");
+        Login("alireza", "alireza123@#");
+        Login("alireza", "alireza123@#");
+        Login("alireza", "alireza123@#");
+        Login("alireza", "alireza123@#");
+
+    }
+
+    private static String Login(String username, String password) {
+
         loadUsernamesFromFile();
-
-        Scanner scanner = new Scanner(System.in);
-
-        String username = getUsername(scanner);
-        String password = getPassword(scanner);
-
         if (validateCredentials(username, password)) {
-            System.out.println("Login successful!");
+            return "OK";
         } else {
-            System.out.println("Incorrect username or password!");
+            return "The username or password is incorrect";
         }
 
-        scanner.close();
     }
 
     private static void loadUsernamesFromFile() {
@@ -40,21 +44,9 @@ public class LoginPage {
             }
             scanner.close();
         } catch (IOException e) {
-            System.out.println("An error occurred while loading usernames from file.");
+            System.out.println("Error while reading user information file");
             e.printStackTrace();
         }
-    }
-
-    private static String getUsername(Scanner scanner) {
-        System.out.print("Enter username: ");
-        String username = scanner.nextLine();
-        return username;
-    }
-
-    private static String getPassword(Scanner scanner) {
-        System.out.print("Enter password: ");
-        String password = scanner.nextLine();
-        return password;
     }
 
     private static boolean validateCredentials(String username, String password) {
