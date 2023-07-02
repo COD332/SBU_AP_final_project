@@ -29,16 +29,16 @@ public class server {
     public static void main(String[] args) throws IOException {
         ServerSocket serverSocket = new ServerSocket(12345);
 
-        System.out.println("Server started. Listening for connections...");
+        System.out.println("Server started !");
 
         while (true) {
             Socket clientSocket = serverSocket.accept();
 
             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             String message = in.readLine();
-            System.out.println("Received message from client: " + message);
+            System.out.println(message);
 
-            // Send message to client
+
             PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
             out.println("Hello from server");
             out.flush();
@@ -62,17 +62,17 @@ class MyApp extends StatelessWidget {
     Socket.connect('192.168.1.101', 12345).then((socket) {
       print('Connected to server');
 
-      socket.writeln(message); // Write the message to the socket with a newline
+      socket.writeln(message);
       socket.flush();
 
-      // Read the response from the server
+
       socket.transform(utf8.decoder.cast()).listen((response) {
-        print('Received response from server: $response');
+        print(response);
       });
 
       socket.close();
     }).catchError((e) {
-      print('Error: $e');
+      print(e);
     });
   }
 
