@@ -404,7 +404,25 @@ Container(
                     Expanded(
                       flex: 3,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () 
+                        {
+                                             Navigator.push(
+                  context,
+                  PageRouteBuilder(
+                    transitionDuration: Duration(milliseconds: 400),
+                    pageBuilder: (_, __, ___) => Passengers(data: "img/al2.png"+ "-" + 'مشهد → تهران' + "-" + '۱۰ : ۰۰' + "-" + '۲۰۰,۰۰۰ تومان' + "-" + selected_date),
+                    transitionsBuilder: (_, animation, __, child) {
+                      return SlideTransition(
+                        position: Tween<Offset>(
+                          begin: Offset(0.0, 2.0),
+                          end: Offset.zero,
+                        ).animate(animation),
+                        child: child,
+                      );
+                    },
+                  ),
+                );
+                        },
                         style: ElevatedButton.styleFrom(
                           primary: Colors.blue,
                           shape: RoundedRectangleBorder(
@@ -473,7 +491,26 @@ Container(
                     Expanded(
                       flex: 3,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () 
+                        {
+                                             Navigator.push(
+                  context,
+                  PageRouteBuilder(
+                    transitionDuration: Duration(milliseconds: 400),
+                    pageBuilder: (_, __, ___) => Passengers(data: "img/al3.png"+ "-" + 'قم → مشهد' + "-" + '۱۱ : ۰۰' + "-" + '۱۵۰,۰۰۰ تومان' + "-" + selected_date),
+                    transitionsBuilder: (_, animation, __, child) {
+                      return SlideTransition(
+                        position: Tween<Offset>(
+                          begin: Offset(0.0, 2.0),
+                          end: Offset.zero,
+                        ).animate(animation),
+                        child: child,
+                      );
+                    },
+                  ),
+                );
+
+                        },
                         style: ElevatedButton.styleFrom(
                           primary: Colors.blue,
                           shape: RoundedRectangleBorder(
