@@ -6,11 +6,6 @@ void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
 
-  TextEditingController c1 = TextEditingController();
-  TextEditingController c2 = TextEditingController();
-  TextEditingController c3 = TextEditingController();
-  TextEditingController c4 = TextEditingController();
-  TextEditingController c5 = TextEditingController();
 
   // void send_message(String message) 
   // {
@@ -61,14 +56,14 @@ class MyApp extends StatelessWidget {
   //       }
 
 
-      });
-      socket.close();
+  //     });
+  //     socket.close();
 
-    }).catchError((e) 
-    {
-      print(e);
-    });
-  }
+  //   }).catchError((e) 
+  //   {
+  //     print(e);
+  //   });
+  // }
 
 
 
@@ -76,7 +71,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    send_message("HI");
     return MaterialApp(
       home: Navigator(
         onGenerateRoute: (RouteSettings settings) {
@@ -126,7 +120,6 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(
               width: 300,
               child: TextField(
-                controller:c1,
                 textAlign: TextAlign.left,
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.person),
@@ -139,7 +132,6 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(
               width: 300,
               child: TextField(
-                controller:c2,
                 textAlign: TextAlign.left,
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.vpn_key),
@@ -269,7 +261,6 @@ class _SignUpPageState extends State<SignUpPage> {
             SizedBox(
               width: 300,
               child: TextField(
-                controller:c3,
                 textAlign: TextAlign.left,
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.person),
@@ -282,7 +273,6 @@ class _SignUpPageState extends State<SignUpPage> {
             SizedBox(
               width: 300,
               child: TextField(
-                controller:c4,
                 textAlign: TextAlign.left,
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.email),
@@ -295,7 +285,6 @@ class _SignUpPageState extends State<SignUpPage> {
             SizedBox(
               width: 300,
               child: TextField(
-                controller:c5,
                 textAlign: TextAlign.left,
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.vpn_key),
